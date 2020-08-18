@@ -1,2 +1,2 @@
 # exercism
-My exercism solutions
+My solutions to exercises on exercism.io
