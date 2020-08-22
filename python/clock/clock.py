@@ -1,15 +1,19 @@
 class Clock:
     def __init__(self, hour, minute):
-        pass
+        self.minutes = hour * 60 + minute
+        self.hour = str(self.minutes // 60 % 24).zfill(2)
+        self.minute = str(self.minutes % 60).zfill(2)
 
-    def __repr__(self):
-        pass
+    def __str__(self):
+        return '{}:{}'.format(self.hour, self.minute)
 
     def __eq__(self, other):
-        pass
+        return str(self) == str(other)
 
     def __add__(self, minutes):
-        pass
+        total_minutes = self.minutes + minutes
+        return Clock(total_minutes // 60, total_minutes % 60)
 
     def __sub__(self, minutes):
-        pass
+        total_minutes = self.minutes - minutes
+        return Clock(total_minutes // 60, total_minutes % 60)
