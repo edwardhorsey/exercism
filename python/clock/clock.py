@@ -5,7 +5,7 @@ class Clock:
         self.minute = str(self.minutes % 60).zfill(2)
 
     def __str__(self):
-        return '{}:{}'.format(self.hour, self.minute)
+        return f'{self.hour}:{self.minute}'
 
     def __eq__(self, other):
         return str(self) == str(other)
