@@ -11,36 +11,23 @@ discounts = {
 
 base_price = 800
 
-def count(list):
-    results = dict()
-    for i in list:
-        results[i] = results.get(i, 0) + 1
-    return results
-
 def total(basket):
-    basket = sorted(basket, reverse=True)
-    print(basket)
     price = 0
-    counted = count(basket)
+    counted = dict()
+    for val in basket:
+        counted[val] = counted.get(val, 0) + 1
     bundles=[]
-    print(counted)
     
     while len(counted)>0:
-        print(len(counted), counted)
         price += int(len(counted) * base_price * discounts[len(counted)])
         bundles.append(len(counted))
         for key in counted.keys():
             counted[key] -= 1
         counted = {key: val for key, val in counted.items() if val != 0}
-        print(counted)
 
     while 3 in bundles and 5 in bundles:
         bundles.remove(3)
         bundles.remove(5)
         price -= 40
 
-    print(price, 'hi', bundles)
     return price
-
-basket = [1, 1, 2, 2, 3, 3, 4, 4, 5]
-total(basket)
