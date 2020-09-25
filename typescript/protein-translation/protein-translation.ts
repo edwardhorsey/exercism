@@ -8,9 +8,9 @@ export class ProteinTranslation {
     let index: number = 0;
     let output: string[] = [];
     while (index <= (sequence.length - 2)) {
-      const protein = sequence.slice(index,index+3);
-      if (stop.includes(protein)) break;
-      output.push(ProteinTranslation.dictionary[protein]);
+      const codon = sequence.slice(index,index+3);
+      if (stop.includes(codon)) break;
+      output.push(ProteinTranslation.dictionary[codon]);
       index += 3;
     }
     return output;
