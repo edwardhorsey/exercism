@@ -13,8 +13,12 @@ tempCodeRunnerFile.js
 
 #py
 __pycache__
+tempCodeRunnerFile.py
 .pytest_cache
 
 #other
 teams
 workings
+report.*
+.eslintrc
+workings.js
