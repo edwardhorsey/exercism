@@ -22,3 +22,7 @@ workings
 report.*
 .eslintrc
 workings.js
+
+#php
+.phpunit*
+phpunit.*
