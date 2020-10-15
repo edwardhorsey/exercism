@@ -24,5 +24,7 @@ report.*
 workings.js
 
 #php
+workings.php
 .phpunit*
 phpunit.*
+test.php
