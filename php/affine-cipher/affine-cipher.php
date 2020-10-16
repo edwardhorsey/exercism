@@ -1,24 +1,13 @@
 <?php
 
-function __gcd($a, $b) { 
+function gcd($a, $b) { 
   if ($a == 0 || $b == 0) {
     return 0; 
   }
   if ($a == $b) {
     return $a; // base case
   }
-  if ($a > $b) {
-    return __gcd($a - $b, $b); 
-  }
-  return __gcd($a, $b - $a); 
-} 
-
-function coprime($a, $b) { 
-  if (__gcd($a, $b) == 1) {
-    return TRUE;
-  } else {
-    return FALSE;
-  }
+  return $a > $b ? gcd($a - $b, $b) : gcd($a, $b - $a); 
 }
   
 function findModMultiInverse($a, $b) {
@@ -34,7 +23,7 @@ function format($string) {
 }
 
 function encode($string, $a, $b) {
-  if (!coprime($a, 26)) {
+  if (gcd($a, 26) !== 1) {
     throw new Exception('.');
   }
   $alphabet = range('a', 'z');
@@ -55,22 +44,17 @@ return $output;
 }
 
 function decode($string, $a, $b) {
-  if (!coprime($a, 26)) {
+  if (gcd($a, 26) !== 1) {
     throw new Exception('.');
   }
   $alphabet = range('a', 'z');
-  $output = '';
-  foreach(str_split(format($string)) as $letter){
-    if (is_numeric($letter) || $letter === " ") {
-      $output .= $letter;
+  return array_reduce(str_split(format($string)), function($acc, $letter) use ($alphabet, $a, $b) {
+    if (is_numeric($letter)) {
+      return $acc .= $letter;
     } else {
       $indexOfLetter = array_search($letter, $alphabet);
       $answer = (findModMultiInverse($a, 26) * ($indexOfLetter - $b)) % 26;
-      if ($answer < 0) {
-        $answer += 26;
-      }
-      $output .= $alphabet[$answer];
+      return $acc .= $answer < 0 ? $alphabet[$answer + 26] : $alphabet[$answer];
     }
-  }
-  return $output;
+  }, '');
 }
