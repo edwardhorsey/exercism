@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The test are divided into two groups:
  *
