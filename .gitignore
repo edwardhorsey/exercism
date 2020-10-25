@@ -3,7 +3,7 @@
 
 #js/ts
 node_modules
-.exercism 
+.exercism
 .npmrc
 yarn.lock
 package-lock.json
@@ -28,3 +28,4 @@ workings.php
 .phpunit*
 phpunit.*
 test.php
+testing.php
